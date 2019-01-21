@@ -3,66 +3,64 @@ package tax;
 public class TeeCalculator extends TaxCalculator {
     @Override
     int calculateTax(Vehicle vehicle) {
-        if (vehicle.getFuelType() == FuelType.PETROL){
-            int CO2 = vehicle.getCo2Emissions();
-            if (CO2 == 0) { // Find me
-                return 0; // Find me againasdfas
-            } else if (CO2 < 51) {
-                return 10;
-            } else if (CO2 < 76) {
-                return 25;
-            } else if (CO2 < 91) {
-                return 105;
-            } else if (CO2 < 101) {
-                return 125;
-            } else if (CO2 < 111) {
-                return 145;
-            } else if (CO2 < 131) {
-                return 165;
-            } else if (CO2 < 151) {
-                return 205;
-            } else if (CO2 < 171) {
-                return 515;
-            } else if (CO2 < 191) {
-                return 830;
-            } else if (CO2 < 226) {
-                return 1240;
-            } else if (CO2 < 256) {
-                return 1760;
-            } else {
-                return 2070;
-            }
-        } else if (vehicle.getFuelType() == FuelType.DIESEL) {
-            int CO2 = vehicle.getCo2Emissions();
-            if (CO2 == 0) { // Find me
-                return 0; // Find me againasdfas
-            } else if (CO2 < 51) {
-                return 25;
-            } else if (CO2 < 76) {
-                return 105;
-            } else if (CO2 < 91) {
-                return 125;
-            } else if (CO2 < 101) {
-                return 145;
-            } else if (CO2 < 111) {
-                return 165;
-            } else if (CO2 < 131) {
-                return 205;
-            } else if (CO2 < 151) {
-                return 515;
-            } else if (CO2 < 171) {
-                return 830;
-            } else if (CO2 < 191) {
-                return 1240;
-            } else if (CO2 < 226) {
-                return 1760;
-            } else {
-                return 2070;
-            }
+        int CO2 = vehicle.getCo2Emissions();
+        int[] prices = taxtCalcTemplate(vehicle.getFuelType());
+
+        if (CO2 == 0) {
+            return prices[0];
+
+        } else if (CO2 < 51) {
+            return prices[1];
+
+        } else if (CO2 < 76) {
+            return prices[2];
+
+        } else if (CO2 < 91) {
+            return prices[3];
+
+        } else if (CO2 < 101) {
+            return prices[4];
+
+        } else if (CO2 < 111) {
+            return prices[5];
+
+        } else if (CO2 < 131) {
+            return prices[6];
+
+        } else if (CO2 < 151) {
+            return prices[7];
+
+        } else if (CO2 < 171) {
+            return prices[8];
+
+        } else if (CO2 < 191) {
+            return prices[9];
+
+        } else if (CO2 < 226) {
+            return prices[10];
+
+        } else if (CO2 < 256) {
+            return prices[11];
+
         } else {
-            return 0;
+            return prices[12];
         }
+    }
 
 
+    private int[] taxtCalcTemplate(FuelType gas) {
+
+        switch(gas) {
+            case PETROL:
+                return new int[]{0,10,25,105,125,145,165,205,515,830,1240,1760,2070};
+            case DIESEL:
+                return new int[]{0,25,105,125,145,165,205,515,830,1240,1760,2070,2070};
+            case ALTERNATIVE_FUEL:
+                return new int[]{0,0,15,95,115,135,155,195,505,820,1230,1750,2060};
+
+            default:
+                return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+        }
     }
 }
