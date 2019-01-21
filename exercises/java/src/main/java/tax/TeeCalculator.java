@@ -4,8 +4,8 @@ public class TeeCalculator extends TaxCalculator {
     @Override
     int calculateTax(Vehicle vehicle) {
         int CO2 = vehicle.getCo2Emissions();
-        if (CO2 == 0) {
-            return 0;
+        if (CO2 == 0) { // Find me
+            return 0; // Find me again
         } else if (CO2 < 51) {
             return 10;
         } else if (CO2 < 76) {
