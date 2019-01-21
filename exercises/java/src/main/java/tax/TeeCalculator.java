@@ -44,9 +44,7 @@ public class TeeCalculator extends TaxCalculator {
 
         } else {
             return prices[12];
-
         }
-
     }
 
 
