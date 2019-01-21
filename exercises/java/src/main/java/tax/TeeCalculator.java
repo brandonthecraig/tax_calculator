@@ -2,7 +2,7 @@ package tax;
 
 public class TeeCalculator extends TaxCalculator {
 
-    boolean storyFiveToggle = false;
+    public static boolean storyFiveToggle = true;
 
     @Override
     int calculateTax(Vehicle vehicle) {
